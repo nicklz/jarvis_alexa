@@ -5,7 +5,6 @@ const API_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL = 'gpt-3.5-turbo';
 const KEY = 'GET YOUR KEY FROM https://platform.openai.com/account/api-keys';
 
-
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
@@ -19,18 +18,17 @@ const LaunchRequestHandler = {
   }
 };
 
-
 const ChatGPTIntentHandler = {
   canHandle(handlerInput) {
     return true;
   },
   async handle(handlerInput) {
     const question = Alexa.getSlotValue(handlerInput.requestEnvelope, 'question');
-    
+
     try {
       const response = await axios.post(API_URL, {
         model: MODEL,
-        messages: [{"role": "user", "content": question}],
+        messages: [{ "role": "user", "content": question }],
       }, {
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +54,7 @@ const ChatGPTIntentHandler = {
 
 const HelpIntentHandler = {
   canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' && 
+    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
       Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
   },
   handle(handlerInput) {
@@ -70,9 +68,9 @@ const HelpIntentHandler = {
 
 const CancelAndStopIntentHandler = {
   canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' && 
+    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
       (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent' ||
-      Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
+        Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
   },
   handle(handlerInput) {
     const speakOutput = 'Very well sir, goodbye.';
@@ -91,7 +89,6 @@ const SessionEndedRequestHandler = {
   }
 };
 
-
 const ErrorHandler = {
   canHandle() {
     return true;
@@ -106,7 +103,6 @@ const ErrorHandler = {
       .getResponse();
   }
 };
-
 
 exports.handler = Alexa.SkillBuilders.custom()
   .addRequestHandlers(
