@@ -1,4 +1,4 @@
-# Jarvis Alexa Skill
+# JARVIS Alexa Skill
 
 # Description
 ChatGPT 3.5 powered Alexa Skill
@@ -8,6 +8,6 @@ ChatGPT 3.5 powered Alexa Skill
 2. Replace OpenAI api key with your own (index.js)
 
 ## Usage
-1. Say "Alexa activate Jarvis"
+1. Say "Alexa activate JARVIS"
 2. Then say "OK [say your question here]"
 
